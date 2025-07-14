@@ -138,8 +138,6 @@ class InstallRequirement:
         self.should_reinstall = False
         # Temporary build location
         self._temp_build_dir: TempDirectory | None = None
-        # Set to True after successful installation
-        self.install_succeeded: bool | None = None
         # Supplied options
         self.hash_options = hash_options if hash_options else {}
         self.config_settings = config_settings
@@ -788,7 +786,6 @@ class InstallRequirement:
             direct_url=self.download_info if self.is_direct else None,
             requested=self.user_supplied,
         )
-        self.install_succeeded = True
 
 
 def check_invalid_constraint_type(req: InstallRequirement) -> str:

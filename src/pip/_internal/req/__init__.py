@@ -91,11 +91,11 @@ def install_given_reqs(
                 )
             except Exception:
                 # if install did not succeed, rollback previous uninstall
-                if uninstalled_pathset and not requirement.install_succeeded:
+                if uninstalled_pathset:
                     uninstalled_pathset.rollback()
                 raise
             else:
-                if uninstalled_pathset and requirement.install_succeeded:
+                if uninstalled_pathset:
                     uninstalled_pathset.commit()
 
             installed.append(InstallationResult(req_name))
